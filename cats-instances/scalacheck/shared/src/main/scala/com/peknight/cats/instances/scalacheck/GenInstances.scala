@@ -31,7 +31,7 @@ private[scalacheck] trait GenInstances extends LowPriorityGenInstances:
       Eval.later(map2(fa, Gen.lzy(fb.value))(f))
   end given
 
-  given [A: Monoid] : Monoid[Gen[A]] with
+  given [A: Monoid]: Monoid[Gen[A]] with
     def empty: Gen[A] = Gen.const(Monoid[A].empty)
 
     def combine(x: Gen[A], y: Gen[A]): Gen[A] =
