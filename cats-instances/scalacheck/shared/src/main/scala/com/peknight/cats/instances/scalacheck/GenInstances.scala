@@ -15,7 +15,7 @@ private[scalacheck] trait GenInstances extends LowPriorityGenInstances:
 
     def combineK[A](x: Gen[A], y: Gen[A]): Gen[A] = GenOps.gen { (params, seed) =>
       val xGen = GenOps.doApply(x)(params, seed)
-      if xGen.retrieve.isDefined then xGen else GenOps.doApply(y)(params, seed)
+      if xGen.retrieve.isDefined then xGen else GenOps.doApply(y)(params, xGen.seed)
     }
 
     def functor: Functor[Gen] = this
