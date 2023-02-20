@@ -33,6 +33,7 @@ lazy val catsInstancesScalaCheck = (crossProject(JSPlatform, JVMPlatform) in fil
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % catsVersion,
       "org.scalacheck" %%% "scalacheck" % scalaCheckVersion,
+      "org.typelevel" %%% "cats-laws" % catsVersion % Test,
     )
   )
 
