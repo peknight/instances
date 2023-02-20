@@ -5,11 +5,13 @@ import com.peknight.cats.instances.scalacheck.test.seed.given
 import org.scalacheck.rng.Seed
 import org.scalacheck.{Arbitrary, Cogen, Gen, GenOps}
 
+import scala.annotation.tailrec
+
 trait CogenTestInstances:
   def cogenEq[A : Arbitrary](trials: Int): Eq[Cogen[A]] = Eq.instance[Cogen[A]] { (cogenX: Cogen[A], cogenY: Cogen[A]) =>
     val gen = Arbitrary.arbitrary[A]
     val params = Gen.Parameters.default
-    def loop(count: Int, retries: Int, seed: Seed): Boolean =
+    @tailrec def loop(count: Int, retries: Int, seed: Seed): Boolean =
       if retries <= 0 then sys.error("Cogen equivalent check failed")
       else if count <= 0 then true
       else
