@@ -3,7 +3,7 @@ package com.peknight.cats.instances.scalacheck
 import cats.{Alternative, Eval, Functor, FunctorFilter, Monad, Monoid}
 import org.scalacheck.{Arbitrary, Gen, GenOps}
 
-private[scalacheck] trait ArbitraryInstances extends LowPriorityArbitraryInstances:
+private[scalacheck] trait ArbitraryInstances extends ArbitraryInstances2:
   given Monad[Arbitrary] with Alternative[Arbitrary] with FunctorFilter[Arbitrary] with
     def pure[A](x: A): Arbitrary[A] = Arbitrary(Gen.const(x))
 

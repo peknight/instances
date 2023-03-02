@@ -3,7 +3,7 @@ package com.peknight.cats.instances.scalacheck
 import cats.{Alternative, Eval, Functor, FunctorFilter, Monad, Monoid}
 import org.scalacheck.{Gen, GenOps}
 
-private[scalacheck] trait GenInstances extends LowPriorityGenInstances:
+private[scalacheck] trait GenInstances extends GenInstances2:
   given Monad[Gen] with Alternative[Gen] with FunctorFilter[Gen] with
     def pure[A](x: A): Gen[A] = Gen.const(x)
 
