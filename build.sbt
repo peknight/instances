@@ -17,13 +17,24 @@ lazy val commonSettings = Seq(
 
 lazy val instances = (project in file("."))
   .aggregate(
+    catsInstancesTuple.jvm,
+    catsInstancesTuple.js,
     catsInstancesScalaCheck.jvm,
-    catsInstancesScalaCheck.js
+    catsInstancesScalaCheck.js,
   )
   .enablePlugins(JavaAppPackaging)
   .settings(commonSettings)
   .settings(
     name := "instances",
+  )
+
+lazy val catsInstancesTuple = (crossProject(JSPlatform, JVMPlatform) in file("cats-instances/tuple"))
+  .settings(commonSettings)
+  .settings(
+    name := "cats-instances-tuple",
+    libraryDependencies ++= Seq(
+      "org.typelevel" %%% "cats-core" % catsVersion,
+    )
   )
 
 lazy val catsInstancesScalaCheck = (crossProject(JSPlatform, JVMPlatform) in file("cats-instances/scalacheck"))
