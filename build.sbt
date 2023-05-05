@@ -17,6 +17,17 @@ lazy val commonSettings = Seq(
 
 lazy val instances = (project in file("."))
   .aggregate(
+    catsInstances,
+    genericInstances,
+  )
+  .enablePlugins(JavaAppPackaging)
+  .settings(commonSettings)
+  .settings(
+    name := "instances",
+  )
+
+lazy val catsInstances = (project in file("cats-instances"))
+  .aggregate(
     catsInstancesTuple.jvm,
     catsInstancesTuple.js,
     catsInstancesTime.jvm,
@@ -27,7 +38,7 @@ lazy val instances = (project in file("."))
   .enablePlugins(JavaAppPackaging)
   .settings(commonSettings)
   .settings(
-    name := "instances",
+    name := "cats-instances",
   )
 
 lazy val catsInstancesTuple = (crossProject(JSPlatform, JVMPlatform) in file("cats-instances/tuple"))
@@ -59,5 +70,28 @@ lazy val catsInstancesScalaCheck = (crossProject(JSPlatform, JVMPlatform) in fil
     )
   )
 
+lazy val genericInstances = (project in file("generic-instances"))
+  .aggregate(
+    genericInstancesSquants.jvm,
+    genericInstancesSquants.js,
+  )
+  .enablePlugins(JavaAppPackaging)
+  .settings(commonSettings)
+  .settings(
+    name := "generic-instances",
+  )
+
+lazy val genericInstancesSquants = (crossProject(JSPlatform, JVMPlatform) in file("generic-instances/squants"))
+  .settings(commonSettings)
+  .settings(
+    name := "generic-instances-squants",
+    libraryDependencies ++= Seq(
+      "org.typelevel" %%% "squants" % squantsVersion,
+      "com.peknight" %%% "generic-mapper" % pekGenericVersion,
+    )
+  )
+
 val catsVersion = "2.9.0"
 val scalaCheckVersion = "1.17.0"
+val squantsVersion = "1.8.3"
+val pekGenericVersion = "0.1.0-SNAPSHOT"
