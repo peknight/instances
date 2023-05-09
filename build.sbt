@@ -18,6 +18,7 @@ lazy val commonSettings = Seq(
 lazy val instances = (project in file("."))
   .aggregate(
     catsInstances,
+    scalaCheckInstances,
     genericInstances,
   )
   .enablePlugins(JavaAppPackaging)
@@ -66,6 +67,26 @@ lazy val catsInstancesScalaCheck = (crossProject(JSPlatform, JVMPlatform) in fil
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % catsVersion,
       "org.scalacheck" %%% "scalacheck" % scalaCheckVersion,
+    )
+  )
+
+lazy val scalaCheckInstances = (project in file("scalacheck-instances"))
+  .aggregate(
+    scalaCheckInstancesCats.jvm,
+    scalaCheckInstancesCats.js,
+  )
+  .enablePlugins(JavaAppPackaging)
+  .settings(commonSettings)
+  .settings(
+    name := "scalacheck-instances",
+  )
+
+lazy val scalaCheckInstancesCats = (crossProject(JSPlatform, JVMPlatform) in file("scalacheck-instances/cats"))
+  .dependsOn(catsInstancesScalaCheck)
+  .settings(commonSettings)
+  .settings(
+    name := "scalacheck-instances-cats",
+    libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-laws" % catsVersion % Test,
     )
   )

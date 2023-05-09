@@ -1,4 +1,4 @@
-package com.peknight.cats.instances.scalacheck.collection
+package com.peknight.scalacheck.instances.cats.data
 
 import cats.data.NonEmptyList
 import cats.syntax.apply.*
@@ -11,3 +11,4 @@ trait NonEmptyListInstances:
   end given
 end NonEmptyListInstances
 object NonEmptyListInstances extends NonEmptyListInstances
+

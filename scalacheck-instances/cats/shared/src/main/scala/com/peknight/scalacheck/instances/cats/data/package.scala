@@ -1,6 +1,6 @@
-package com.peknight.cats.instances.scalacheck
+package com.peknight.scalacheck.instances.cats
 
-package object collection:
+package object data:
   object all extends NonEmptyListInstances
   object nonEmptyList extends NonEmptyListInstances
-end collection
+end data

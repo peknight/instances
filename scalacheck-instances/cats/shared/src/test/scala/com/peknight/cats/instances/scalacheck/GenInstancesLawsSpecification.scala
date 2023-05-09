@@ -3,9 +3,9 @@ package com.peknight.cats.instances.scalacheck
 import cats.data.NonEmptyList
 import cats.kernel.laws.discipline.{MonoidTests, SemigroupTests}
 import cats.laws.discipline.{AlternativeTests, FunctorFilterTests, MonadTests}
-import com.peknight.cats.instances.scalacheck.collection.nonEmptyList.given
 import com.peknight.cats.instances.scalacheck.gen.given
 import com.peknight.cats.instances.scalacheck.test.gen.given
+import com.peknight.scalacheck.instances.cats.data.nonEmptyList.given
 import org.scalacheck.{Gen, Properties, Test}
 
 class GenInstancesLawsSpecification extends Properties("GenInstancesLaws"):
