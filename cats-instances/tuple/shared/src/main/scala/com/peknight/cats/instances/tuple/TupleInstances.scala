@@ -4,13 +4,7 @@ import cats.Monoid
 
 import scala.compiletime.constValue
 
-trait TupleInstances:
-
-  given Monoid[EmptyTuple] with
-    def empty: EmptyTuple = EmptyTuple
-
-    def combine(x: EmptyTuple, y: EmptyTuple): EmptyTuple = EmptyTuple
-  end given
+trait TupleInstances extends TupleInstances2:
 
   inline given[K <: String, H, T <: Tuple](using hMonoid: => Monoid[H], tMonoid: Monoid[T]): Monoid[(K, H) *: T] =
     val label = constValue[K]
