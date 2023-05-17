@@ -19,6 +19,7 @@ lazy val instances = (project in file("."))
   .aggregate(
     catsInstances,
     scalaCheckInstances,
+    cirisInstances,
     genericInstances,
   )
   .enablePlugins(JavaAppPackaging)
@@ -91,6 +92,28 @@ lazy val scalaCheckInstancesCats = (crossProject(JSPlatform, JVMPlatform) in fil
     )
   )
 
+lazy val cirisInstances = (project in file("ciris-instances"))
+  .aggregate(
+    cirisInstancesHttps4s.jvm,
+    cirisInstancesHttps4s.js,
+  )
+  .enablePlugins(JavaAppPackaging)
+  .settings(commonSettings)
+  .settings(
+    name := "ciris-instances",
+  )
+
+lazy val cirisInstancesHttps4s = (crossProject(JSPlatform, JVMPlatform) in file("ciris-instances/http4s"))
+  .settings(commonSettings)
+  .settings(
+    name := "ciris-instances-http4s",
+    libraryDependencies ++= Seq(
+      "is.cir" %%% "ciris" % cirisVersion,
+      "org.http4s" %%% "http4s-core" % http4sVersion,
+    )
+  )
+
+
 lazy val genericInstances = (project in file("generic-instances"))
   .aggregate(
     genericInstancesSquants.jvm,
@@ -114,5 +137,7 @@ lazy val genericInstancesSquants = (crossProject(JSPlatform, JVMPlatform) in fil
 
 val catsVersion = "2.9.0"
 val scalaCheckVersion = "1.17.0"
+val cirisVersion = "3.1.0"
+val http4sVersion = "1.0.0-M32"
 val squantsVersion = "1.8.3"
 val pekGenericVersion = "0.1.0-SNAPSHOT"
