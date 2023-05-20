@@ -22,7 +22,6 @@ lazy val instances = (project in file("."))
     cirisInstances,
     genericInstances,
   )
-  .enablePlugins(JavaAppPackaging)
   .settings(commonSettings)
   .settings(
     name := "instances",
@@ -37,7 +36,6 @@ lazy val catsInstances = (project in file("cats-instances"))
     catsInstancesScalaCheck.jvm,
     catsInstancesScalaCheck.js,
   )
-  .enablePlugins(JavaAppPackaging)
   .settings(commonSettings)
   .settings(
     name := "cats-instances",
@@ -76,7 +74,6 @@ lazy val scalaCheckInstances = (project in file("scalacheck-instances"))
     scalaCheckInstancesCats.jvm,
     scalaCheckInstancesCats.js,
   )
-  .enablePlugins(JavaAppPackaging)
   .settings(commonSettings)
   .settings(
     name := "scalacheck-instances",
@@ -97,7 +94,6 @@ lazy val cirisInstances = (project in file("ciris-instances"))
     cirisInstancesHttps4s.jvm,
     cirisInstancesHttps4s.js,
   )
-  .enablePlugins(JavaAppPackaging)
   .settings(commonSettings)
   .settings(
     name := "ciris-instances",
@@ -119,7 +115,6 @@ lazy val genericInstances = (project in file("generic-instances"))
     genericInstancesSquants.jvm,
     genericInstancesSquants.js,
   )
-  .enablePlugins(JavaAppPackaging)
   .settings(commonSettings)
   .settings(
     name := "generic-instances",
