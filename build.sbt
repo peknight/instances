@@ -20,7 +20,6 @@ lazy val instances = (project in file("."))
     catsInstances,
     scalaCheckInstances,
     cirisInstances,
-    doobieInstances,
     genericInstances,
   )
   .settings(commonSettings)
@@ -110,37 +109,25 @@ lazy val cirisInstancesHttps4s = (crossProject(JSPlatform, JVMPlatform) in file(
     )
   )
 
-lazy val doobieInstances = (project in file("doobie-instances"))
-  .aggregate(
-    doobieInstancesTime.jvm,
-    doobieInstancesTime.js,
-  )
-  .settings(commonSettings)
-  .settings(
-    name := "doobie-instances",
-  )
-
-lazy val doobieInstancesTime = (crossProject(JSPlatform, JVMPlatform) in file("doobie-instances/time"))
-  .settings(commonSettings)
-  .settings(
-    name := "doobie-instances-time",
-    libraryDependencies ++= Seq(
-    )
-  )
-  .jvmSettings(
-    libraryDependencies ++= Seq(
-      doobieCore,
-    )
-  )
-
 lazy val genericInstances = (project in file("generic-instances"))
   .aggregate(
+    genericInstancesTime.jvm,
+    genericInstancesTime.js,
     genericInstancesSquants.jvm,
     genericInstancesSquants.js,
   )
   .settings(commonSettings)
   .settings(
     name := "generic-instances",
+  )
+
+lazy val genericInstancesTime = (crossProject(JSPlatform, JVMPlatform) in file("generic-instances/time"))
+  .settings(commonSettings)
+  .settings(
+    name := "generic-instances-time",
+    libraryDependencies ++= Seq(
+      "com.peknight" %%% "generic-mapper" % pekGenericVersion,
+    )
   )
 
 lazy val genericInstancesSquants = (crossProject(JSPlatform, JVMPlatform) in file("generic-instances/squants"))
@@ -156,9 +143,6 @@ lazy val genericInstancesSquants = (crossProject(JSPlatform, JVMPlatform) in fil
 val catsVersion = "2.9.0"
 val scalaCheckVersion = "1.17.0"
 val cirisVersion = "3.1.0"
-val doobieVersion = "1.0.0-RC2"
 val http4sVersion = "1.0.0-M32"
 val squantsVersion = "1.8.3"
 val pekGenericVersion = "0.1.0-SNAPSHOT"
-
-val doobieCore = "org.tpolecat" %% "doobie-core" % doobieVersion
