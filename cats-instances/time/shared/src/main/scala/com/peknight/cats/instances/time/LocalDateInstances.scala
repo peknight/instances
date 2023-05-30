@@ -4,7 +4,7 @@ import cats.Order
 
 import java.time.LocalDate
 
-private[time] trait LocalDateInstances:
+trait LocalDateInstances:
   given Order[LocalDate] with
     override def compare(x: LocalDate, y: LocalDate): Int = x.compareTo(y)
   end given
