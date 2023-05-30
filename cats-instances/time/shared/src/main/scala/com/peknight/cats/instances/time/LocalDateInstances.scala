@@ -6,7 +6,7 @@ import java.time.LocalDate
 
 trait LocalDateInstances:
   given Order[LocalDate] with
-    override def compare(x: LocalDate, y: LocalDate): Int = x.compareTo(y)
+    def compare(x: LocalDate, y: LocalDate): Int = x.compareTo(y)
   end given
 
 end LocalDateInstances
