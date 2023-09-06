@@ -1,6 +1,6 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "3.2.1"
+ThisBuild / scalaVersion := "3.3.0"
 
 ThisBuild / organization := "com.peknight"
 
@@ -140,9 +140,9 @@ lazy val genericInstancesSquants = (crossProject(JSPlatform, JVMPlatform) in fil
     )
   )
 
-val catsVersion = "2.9.0"
+val catsVersion = "2.10.0"
 val scalaCheckVersion = "1.17.0"
-val cirisVersion = "3.1.0"
+val cirisVersion = "3.2.0"
 val http4sVersion = "1.0.0-M32"
 val squantsVersion = "1.8.3"
 val pekGenericVersion = "0.1.0-SNAPSHOT"
