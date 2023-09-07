@@ -111,4 +111,4 @@ lazy val cirisInstancesHttps4s = (crossProject(JSPlatform, JVMPlatform) in file(
 val catsVersion = "2.10.0"
 val scalaCheckVersion = "1.17.0"
 val cirisVersion = "3.2.0"
-val http4sVersion = "1.0.0-M32"
+val http4sVersion = "1.0.0-M34"
