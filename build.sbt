@@ -20,7 +20,6 @@ lazy val instances = (project in file("."))
     catsInstances,
     scalaCheckInstances,
     cirisInstances,
-    genericInstances,
   )
   .settings(commonSettings)
   .settings(
@@ -109,40 +108,7 @@ lazy val cirisInstancesHttps4s = (crossProject(JSPlatform, JVMPlatform) in file(
     )
   )
 
-lazy val genericInstances = (project in file("generic-instances"))
-  .aggregate(
-    genericInstancesTime.jvm,
-    genericInstancesTime.js,
-    genericInstancesSquants.jvm,
-    genericInstancesSquants.js,
-  )
-  .settings(commonSettings)
-  .settings(
-    name := "generic-instances",
-  )
-
-lazy val genericInstancesTime = (crossProject(JSPlatform, JVMPlatform) in file("generic-instances/time"))
-  .settings(commonSettings)
-  .settings(
-    name := "generic-instances-time",
-    libraryDependencies ++= Seq(
-      "com.peknight" %%% "generic-mapper" % pekGenericVersion,
-    )
-  )
-
-lazy val genericInstancesSquants = (crossProject(JSPlatform, JVMPlatform) in file("generic-instances/squants"))
-  .settings(commonSettings)
-  .settings(
-    name := "generic-instances-squants",
-    libraryDependencies ++= Seq(
-      "org.typelevel" %%% "squants" % squantsVersion,
-      "com.peknight" %%% "generic-mapper" % pekGenericVersion,
-    )
-  )
-
 val catsVersion = "2.10.0"
 val scalaCheckVersion = "1.17.0"
 val cirisVersion = "3.2.0"
 val http4sVersion = "1.0.0-M32"
-val squantsVersion = "1.8.3"
-val pekGenericVersion = "0.1.0-SNAPSHOT"
