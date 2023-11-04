@@ -1,4 +1,4 @@
-package com.peknight.ciris.instances.http4s
+package com.peknight.ciris.instances.ip4s
 
 import ciris.ConfigDecoder
 import com.comcast.ip4s.Port

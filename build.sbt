@@ -19,6 +19,7 @@ lazy val instances = (project in file("."))
   .aggregate(
     catsInstances,
     scalaCheckInstances,
+    circeInstances,
     cirisInstances,
   )
   .settings(commonSettings)
@@ -88,14 +89,46 @@ lazy val scalaCheckInstancesCats = (crossProject(JSPlatform, JVMPlatform) in fil
     )
   )
 
+lazy val circeInstances = (project in file("circe-instances"))
+  .aggregate(
+    circeInstancesIp4s.jvm,
+    circeInstancesIp4s.js,
+  )
+  .settings(commonSettings)
+  .settings(
+    name := "circe-instances",
+  )
+
+lazy val circeInstancesIp4s = (crossProject(JSPlatform, JVMPlatform) in file("circe-instances/ip4s"))
+  .settings(commonSettings)
+  .settings(
+    name := "circe-instances-ip4s",
+    libraryDependencies ++= Seq(
+      "io.circe" %%% "circe-core" % circeVersion,
+      "com.comcast" %%% "ip4s-core" % ip4sCoreVersion,
+    )
+  )
+
 lazy val cirisInstances = (project in file("ciris-instances"))
   .aggregate(
+    cirisInstancesIp4s.jvm,
+    cirisInstancesIp4s.js,
     cirisInstancesHttps4s.jvm,
     cirisInstancesHttps4s.js,
   )
   .settings(commonSettings)
   .settings(
     name := "ciris-instances",
+  )
+
+lazy val cirisInstancesIp4s = (crossProject(JSPlatform, JVMPlatform) in file("ciris-instances/ip4s"))
+  .settings(commonSettings)
+  .settings(
+    name := "ciris-instances-ip4s",
+    libraryDependencies ++= Seq(
+      "is.cir" %%% "ciris" % cirisVersion,
+      "com.comcast" %%% "ip4s-core" % ip4sCoreVersion,
+    )
   )
 
 lazy val cirisInstancesHttps4s = (crossProject(JSPlatform, JVMPlatform) in file("ciris-instances/http4s"))
@@ -111,4 +144,6 @@ lazy val cirisInstancesHttps4s = (crossProject(JSPlatform, JVMPlatform) in file(
 val catsVersion = "2.10.0"
 val scalaCheckVersion = "1.17.0"
 val cirisVersion = "3.2.0"
+val circeVersion = "0.14.6"
 val http4sVersion = "1.0.0-M34"
+val ip4sCoreVersion = "3.3.0"
