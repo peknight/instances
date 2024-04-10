@@ -19,7 +19,6 @@ lazy val instances = (project in file("."))
   .aggregate(
     catsInstances,
     scalaCheckInstances,
-    circeInstances,
     cirisInstances,
   )
   .settings(commonSettings)
@@ -86,26 +85,6 @@ lazy val scalaCheckInstancesCats = (crossProject(JSPlatform, JVMPlatform) in fil
     name := "scalacheck-instances-cats",
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-laws" % catsVersion % Test,
-    )
-  )
-
-lazy val circeInstances = (project in file("circe-instances"))
-  .aggregate(
-    circeInstancesIp4s.jvm,
-    circeInstancesIp4s.js,
-  )
-  .settings(commonSettings)
-  .settings(
-    name := "circe-instances",
-  )
-
-lazy val circeInstancesIp4s = (crossProject(JSPlatform, JVMPlatform) in file("circe-instances/ip4s"))
-  .settings(commonSettings)
-  .settings(
-    name := "circe-instances-ip4s",
-    libraryDependencies ++= Seq(
-      "io.circe" %%% "circe-core" % circeVersion,
-      "com.comcast" %%% "ip4s-core" % ip4sCoreVersion,
     )
   )
 
