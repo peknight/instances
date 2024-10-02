@@ -31,6 +31,8 @@ lazy val catsInstances = (project in file("cats-instances"))
     catsInstancesTuple.js,
     catsInstancesTime.jvm,
     catsInstancesTime.js,
+    catsInstancesScodecBits.jvm,
+    catsInstancesScodecBits.js,
     catsInstancesScalaCheck.jvm,
     catsInstancesScalaCheck.js,
   )
@@ -54,6 +56,16 @@ lazy val catsInstancesTime = (crossProject(JSPlatform, JVMPlatform) in file("cat
     name := "cats-instances-time",
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % catsVersion,
+    )
+  )
+
+lazy val catsInstancesScodecBits = (crossProject(JSPlatform, JVMPlatform) in file("cats-instances/scodec-bits"))
+  .settings(commonSettings)
+  .settings(
+    name := "cats-instances-scodec-bits",
+    libraryDependencies ++= Seq(
+      "org.typelevel" %%% "cats-core" % catsVersion,
+      "org.scodec" %%% "scodec-bits" % scodecVersion,
     )
   )
 
@@ -88,5 +100,6 @@ lazy val scalaCheckInstancesCats = (crossProject(JSPlatform, JVMPlatform) in fil
   )
 
 val catsVersion = "2.12.0"
+val scodecVersion = "1.2.1"
 val pekVersion = "0.1.0-SNAPSHOT"
 val pekExtVersion = pekVersion
