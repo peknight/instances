@@ -1,12 +1,13 @@
 package com.peknight.cats.instances.time
 
-import cats.Order
+import cats.{Eq, Order}
 
 import java.time.Year
 
 trait YearInstances:
-  given Order[Year] with
-    def compare(x: Year, y: Year): Int = x.compareTo(y)
+  given Eq[Year] with
+    override def eqv(x: Year, y: Year): Boolean = x.compareTo(y) == 0
   end given
+  given Order[Year] = Order.fromComparable[Year]
 end YearInstances
 object YearInstances extends YearInstances
