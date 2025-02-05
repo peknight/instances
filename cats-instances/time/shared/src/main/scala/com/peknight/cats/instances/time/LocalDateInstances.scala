@@ -13,5 +13,3 @@ trait LocalDateInstances:
   end given
 end LocalDateInstances
 object LocalDateInstances extends LocalDateInstances
-
-

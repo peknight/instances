@@ -11,5 +11,3 @@ trait InstantInstances:
   given Order[Instant] = Order.fromComparable[Instant]
 end InstantInstances
 object InstantInstances extends InstantInstances
-
-

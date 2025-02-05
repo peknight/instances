@@ -29,6 +29,8 @@ lazy val catsInstances = (project in file("cats-instances"))
   .aggregate(
     catsInstancesTuple.jvm,
     catsInstancesTuple.js,
+    catsInstancesClass.jvm,
+    catsInstancesClass.js,
     catsInstancesTime.jvm,
     catsInstancesTime.js,
     catsInstancesScodecBits.jvm,
@@ -45,6 +47,15 @@ lazy val catsInstancesTuple = (crossProject(JSPlatform, JVMPlatform) in file("ca
   .settings(commonSettings)
   .settings(
     name := "cats-instances-tuple",
+    libraryDependencies ++= Seq(
+      "org.typelevel" %%% "cats-core" % catsVersion,
+    )
+  )
+
+lazy val catsInstancesClass = (crossProject(JSPlatform, JVMPlatform) in file("cats-instances/class"))
+  .settings(commonSettings)
+  .settings(
+    name := "cats-instances-class",
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % catsVersion,
     )
