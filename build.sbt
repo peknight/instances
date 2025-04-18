@@ -33,6 +33,8 @@ lazy val catsInstances = (project in file("cats-instances"))
     catsInstancesClass.js,
     catsInstancesTime.jvm,
     catsInstancesTime.js,
+    catsInstancesCirce.jvm,
+    catsInstancesCirce.js,
     catsInstancesScodecBits.jvm,
     catsInstancesScodecBits.js,
     catsInstancesScalaCheck.jvm,
@@ -67,6 +69,15 @@ lazy val catsInstancesTime = (crossProject(JSPlatform, JVMPlatform) in file("cat
     name := "cats-instances-time",
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % catsVersion,
+    )
+  )
+
+lazy val catsInstancesCirce = (crossProject(JSPlatform, JVMPlatform) in file("cats-instances/circe"))
+  .settings(commonSettings)
+  .settings(
+    name := "cats-instances-circe",
+    libraryDependencies ++= Seq(
+      "io.circe" %%% "circe-core" % circeVersion,
     )
   )
 
@@ -111,6 +122,7 @@ lazy val scalaCheckInstancesCats = (crossProject(JSPlatform, JVMPlatform) in fil
   )
 
 val catsVersion = "2.12.0"
+val circeVersion = "0.14.10"
 val scodecVersion = "1.2.1"
 val pekVersion = "0.1.0-SNAPSHOT"
 val pekExtVersion = pekVersion
