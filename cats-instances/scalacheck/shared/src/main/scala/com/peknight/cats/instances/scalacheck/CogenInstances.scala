@@ -5,7 +5,7 @@ import org.scalacheck.Cogen
 
 private[scalacheck] trait CogenInstances:
   given ContravariantSemigroupal[Cogen] with
-    def product[A, B](fa: Cogen[A], fb: Cogen[B]): Cogen[(A, B)] = Cogen.tuple2(fa, fb)
+    def product[A, B](fa: Cogen[A], fb: Cogen[B]): Cogen[(A, B)] = Cogen.tuple2(using fa, fb)
     def contramap[A, B](fa: Cogen[A])(f: B => A): Cogen[B] = fa.contramap(f)
   end given
 

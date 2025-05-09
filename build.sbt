@@ -1,6 +1,6 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "3.6.2"
+ThisBuild / scalaVersion := "3.7.0"
 
 ThisBuild / organization := "com.peknight"
 
@@ -121,8 +121,8 @@ lazy val scalaCheckInstancesCats = (crossProject(JSPlatform, JVMPlatform) in fil
     )
   )
 
-val catsVersion = "2.12.0"
-val circeVersion = "0.14.10"
+val catsVersion = "2.13.0"
+val circeVersion = "0.14.13"
 val scodecVersion = "1.2.1"
 val pekVersion = "0.1.0-SNAPSHOT"
 val pekExtVersion = pekVersion
