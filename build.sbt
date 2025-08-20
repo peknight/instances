@@ -90,7 +90,7 @@ lazy val scalaCheckInstances = (project in file("scalacheck-instances"))
 
 lazy val scalaCheckInstancesCats = (crossProject(JVMPlatform, JSPlatform, NativePlatform) in file("scalacheck-instances/cats"))
   .dependsOn(catsInstancesScalaCheck)
-  .settings(crossDependency(typelevel.cats.laws, Some(Test)))
+  .settings(crossTestDependencies(typelevel.cats.laws))
   .settings(
     name := "scalacheck-instances-cats",
   )
