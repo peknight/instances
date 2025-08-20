@@ -4,15 +4,14 @@ import com.peknight.build.sbt.*
 commonSettings
 
 lazy val instances = (project in file("."))
+  .settings(name := "instances")
   .aggregate(
     catsInstances,
     scalaCheckInstances,
   )
-  .settings(
-    name := "instances",
-  )
 
 lazy val catsInstances = (project in file("cats-instances"))
+  .settings(name := "cats-instances")
   .aggregate(
     catsInstancesTuple.jvm,
     catsInstancesTuple.js,
@@ -33,64 +32,45 @@ lazy val catsInstances = (project in file("cats-instances"))
     catsInstancesScalaCheck.js,
     catsInstancesScalaCheck.native,
   )
-  .settings(
-    name := "cats-instances",
-  )
 
 lazy val catsInstancesTuple = (crossProject(JVMPlatform, JSPlatform, NativePlatform) in file("cats-instances/tuple"))
+  .settings(name := "cats-instances-tuple")
   .settings(crossDependencies(typelevel.cats))
-  .settings(
-    name := "cats-instances-tuple",
-  )
 
 lazy val catsInstancesClass = (crossProject(JVMPlatform, JSPlatform, NativePlatform) in file("cats-instances/class"))
+  .settings(name := "cats-instances-class")
   .settings(crossDependencies(typelevel.cats))
-  .settings(
-    name := "cats-instances-class",
-  )
 
 lazy val catsInstancesTime = (crossProject(JVMPlatform, JSPlatform, NativePlatform) in file("cats-instances/time"))
+  .settings(name := "cats-instances-time")
   .settings(crossDependencies(typelevel.cats))
-  .settings(
-    name := "cats-instances-time",
-  )
 
 lazy val catsInstancesCirce = (crossProject(JVMPlatform, JSPlatform, NativePlatform) in file("cats-instances/circe"))
+  .settings(name := "cats-instances-circe")
   .settings(crossDependencies(circe))
-  .settings(
-    name := "cats-instances-circe",
-  )
 
 lazy val catsInstancesScodecBits = (crossProject(JVMPlatform, JSPlatform, NativePlatform) in file("cats-instances/scodec-bits"))
+  .settings(name := "cats-instances-scodec-bits")
   .settings(crossDependencies(
     typelevel.cats,
     scodec.bits
   ))
-  .settings(
-    name := "cats-instances-scodec-bits",
-  )
 
 lazy val catsInstancesScalaCheck = (crossProject(JVMPlatform, JSPlatform, NativePlatform) in file("cats-instances/scalacheck"))
+  .settings(name := "cats-instances-scalacheck")
   .settings(crossDependencies(
     typelevel.cats,
     peknight.ext.scalaCheck
   ))
-  .settings(
-    name := "cats-instances-scalacheck",
-  )
 
 lazy val scalaCheckInstances = (project in file("scalacheck-instances"))
+  .settings(name := "scalacheck-instances")
   .aggregate(
     scalaCheckInstancesCats.jvm,
     scalaCheckInstancesCats.js,
   )
-  .settings(
-    name := "scalacheck-instances",
-  )
 
 lazy val scalaCheckInstancesCats = (crossProject(JVMPlatform, JSPlatform, NativePlatform) in file("scalacheck-instances/cats"))
   .dependsOn(catsInstancesScalaCheck)
+  .settings(name := "scalacheck-instances-cats")
   .settings(crossTestDependencies(typelevel.cats.laws))
-  .settings(
-    name := "scalacheck-instances-cats",
-  )
